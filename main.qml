@@ -19,7 +19,7 @@ ApplicationWindow {
 	readonly property string equSign:	"\u003d"
 	readonly property string perSing:	"\u0025"
 	readonly property string piSign:	"\u03c0"
-	readonly property string invSign:	"\u00b9\u2044\u2093"
+	readonly property string invSign:	"\u00b9\u2044<sub>&#x03f0;</sub>"
 	readonly property string squSign:	"\u221a"
 	readonly property string cubSign:	"\u221b"
 	readonly property string eNumSign:	"\u212f"

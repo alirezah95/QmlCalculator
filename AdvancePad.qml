@@ -94,6 +94,7 @@ GridLayout {
 		text: "^(-1)"
 		contentText.color: Material.accent
 		contentText.text: invSign
+		contentText.textFormat: Text.RichText
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 		Layout.row: 3; Layout.column: 0
