@@ -90,7 +90,7 @@ ApplicationWindow {
 
 	Material.accent: Material.color(accentColorNum)
 
-	Component.onCompleted: idStateItem.state = "Advanced";
+	Component.onCompleted: idStateItem.state = "Simple";
 
 	Item {
 		id: idStateItem
