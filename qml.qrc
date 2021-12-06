@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>CalcButton.qml</file>
+        <file>assets/plus.png</file>
+        <file>assets/subtract.png</file>
+        <file>assets/multiply.png</file>
+        <file>assets/equal.png</file>
+        <file>assets/divide.png</file>
+        <file>CalcPad.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>assets/clearall.png</file>
+        <file>assets/clear.png</file>
+        <file>assets/percentage.png</file>
+        <file>AdvancePad.qml</file>
+    </qresource>
+</RCC>
