@@ -20,7 +20,7 @@ Button {
 	property bool	isHighlighted:	false
 	property Text	contentText: Text {
 		text: idButton.text
-		color: Material.foreground;
+		color: Material.foreground
 		textFormat: Text.StyledText
 		font {
 			pointSize: (buttonType === CalcButton.Type.Operator ?
@@ -33,6 +33,10 @@ Button {
 
 	Component.onCompleted: {
 		if (display !== Button.IconOnly) contentItem = this.contentText;
+		if (!enabled) {
+			hoverEnabled = false;
+		}
+
 		buttonPressed.connect(idRoot.onButtonPressed);
 	}
 

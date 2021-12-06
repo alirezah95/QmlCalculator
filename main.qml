@@ -183,14 +183,17 @@ ApplicationWindow {
 			}
 		}
 
-		Label {
+		TextEdit {
 			id: idCalcText
 			Layout.preferredHeight: itemsHeight
 			Layout.fillWidth: true
+			readOnly: true
+			selectByMouse: true
 
 			horizontalAlignment: Qt.AlignLeft
 			verticalAlignment: Qt.AlignVCenter
 			textFormat: Text.PlainText
+			color: fgColor
 			font {
 				pointSize: numFontSize
 			}

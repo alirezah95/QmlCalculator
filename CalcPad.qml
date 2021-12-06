@@ -27,8 +27,9 @@ GridLayout {
 	CalcButton {
 		id: idBtnPercent; buttonType: CalcButton.Type.Operator
 		text: perSing
-		contentText.color: Material.accent
+		contentText.color: Material.color(Material.Grey)
 		contentText.font.pointSize: operFontSize - operFontSize * 0.2
+		enabled: false
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
