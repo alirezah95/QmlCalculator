@@ -7,104 +7,75 @@ GridLayout {
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: cubSign
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
-		buttonType: CalcButton.Type.Operator
+		buttonType: CalcButton.Type.Function
 		text: "sin("
-		contentItem: Text {
-			text: parent.text.substring(0, parent.text.length - 1)
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
+		contentText.text: "sin"
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
-		buttonType: CalcButton.Type.Operator
+		buttonType: CalcButton.Type.Function
 		text: "cos("
-		contentItem: Text {
-			text: parent.text.substring(0, parent.text.length - 1)
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
+		contentText.text: "cos"
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
-		buttonType: CalcButton.Type.Operator
+		buttonType: CalcButton.Type.Function
 		text: "tan("
-		contentItem: Text {
-			text: parent.text.substring(0, parent.text.length - 1)
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
+		contentText.text: "tan"
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
-		buttonType: CalcButton.Type.Operator
+		buttonType: CalcButton.Type.Function
 		text: "max("
-		contentItem: Text {
-			text: parent.text.substring(0, parent.text.length - 1)
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
+		contentText.text: "max"
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: squSign
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: ","
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
-		buttonType: CalcButton.Type.Operator
-		text: "A"
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		buttonType: CalcButton.Type.Function
+		text: "log("
+		contentText.color: Material.accent
+		contentText.text: "log"
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: "("
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: ")"
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
@@ -112,10 +83,8 @@ GridLayout {
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: "^"
-		contentItem: Text { text: powSign
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
+		contentText.text: powSign
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 		Layout.row: 2; Layout.column: 0
@@ -123,10 +92,8 @@ GridLayout {
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: "^(-1)"
-		contentItem: Text { text: invSign
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
+		contentText.text: invSign
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 		Layout.row: 3; Layout.column: 0
@@ -134,10 +101,8 @@ GridLayout {
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: "!"
-		contentItem: Text { text: facSign
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
+		contentText.text: facSign
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 		Layout.row: 4; Layout.column: 0
@@ -145,10 +110,7 @@ GridLayout {
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: eNumSign
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 		Layout.row: 5; Layout.column: 0
@@ -156,10 +118,7 @@ GridLayout {
 	CalcButton {
 		buttonType: CalcButton.Type.Operator
 		text: piSign
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 		Layout.row: 6; Layout.column: 0

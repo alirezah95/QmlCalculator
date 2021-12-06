@@ -15,16 +15,16 @@ class MathParser : public QObject
 public:
 	explicit MathParser(QObject *parent = nullptr);
 	Q_INVOKABLE QString error() { return m_error; }
+	Q_INVOKABLE	QString value() { return m_value; }
 	Q_INVOKABLE bool evaluate(const QString& expr);
-	Q_INVOKABLE	double value() { return m_value; }
 private:
 	void get_postfix_notation(const QString& expr, QVector<Token>& tokens,
 							  QVector<Token>& result);
-	double get_value(QString operation, double operand_0, double operand_1);
+	float get_value(QString operation, float operand_0, float operand_1);
 
 private:
 	QString					m_error;
-	float					m_value = 0.0;
+	QString					m_value = "0";
 
 };
 

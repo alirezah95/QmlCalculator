@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls
 
 Button {
+	id: idButton
 	function getHoverShade() {
 		return Material.theme === Material.Light ? Material.Shade300: Material.Shade700
 	}
@@ -17,8 +18,21 @@ Button {
 
 	property int	buttonType:		CalcButton.Type.Number
 	property bool	isHighlighted:	false
+	property Text	contentText: Text {
+		text: idButton.text
+		color: Material.foreground;
+		textFormat: Text.StyledText
+		font {
+			pointSize: (buttonType === CalcButton.Type.Operator ?
+						   operFontSize: numFontSize)
+			family: idMainFont.name
+		}
+		horizontalAlignment: Text.AlignHCenter
+		verticalAlignment: Text.AlignVCenter
+	}
 
 	Component.onCompleted: {
+		if (display !== Button.IconOnly) contentItem = this.contentText;
 		buttonPressed.connect(idRoot.onButtonPressed);
 	}
 
@@ -82,17 +96,13 @@ Button {
 
 	onHoveredChanged: {
 		if (hovered)
-			state = "Hover"
+			state = "Hover";
 		else
-			state = ""
+			state = "";
 	}
-	onPressedChanged: {
-		if (pressed)
-			state = "Press"
-		else if (hovered)
-			state = "Hover"
-		else
-			state = ""
+	onPressed: state = "Press";
+	onReleased: {
+		state = "";
+		buttonPressed(buttonType, text);
 	}
-	onReleased: buttonPressed(buttonType, text)
 }

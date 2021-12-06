@@ -13,8 +13,8 @@ MathParser::MathParser(QObject *parent) : QObject(parent)
 }
 
 
-double MathParser::get_value(QString operation, double operand_0,
-							 double operand_1)
+float MathParser::get_value(QString operation, float operand_0,
+							 float operand_1)
 {
 	if (operation == QString(SUM_SIGN)) {
 		return operand_0 + operand_1;
@@ -81,33 +81,46 @@ void MathParser::get_postfix_notation(const QString& expr, QVector<Token>& token
 			case Type::OpenParan:
 				opr_stack.push_back(nxt_tkn);
 				break;
-			case Type::CloseParan:
-				if (opr_stack.size() == 0) {
-					m_error = "Mismatch paranthesis.";
-					result.resize(0);
-					return;
-				}
-				auto o_paran_found = false;
-				while (opr_stack.size() > 0) {
-					if (opr_stack.back().type() != Type::OpenParan) {
+			case Type::CloseParan: {
+					if (opr_stack.size() == 0) {
+						m_error = "Mismatch paranthesis.";
+						result.resize(0);
+						return;
+					}
+					auto o_paran_found = false;
+					while (opr_stack.size() > 0) {
+						if (opr_stack.back().type() != Type::OpenParan) {
+							result.push_back(opr_stack.back());
+							opr_stack.pop_back();
+						} else {
+							o_paran_found = true;
+							opr_stack.pop_back();
+							// discard nxt_tkn
+							break;
+						}
+					}
+					if (!o_paran_found) {
+						m_error = "Mismatch paranthesis.";
+						result.resize(0);
+						return;
+					} else if (opr_stack.back().type() == Type::Function) {
 						result.push_back(opr_stack.back());
 						opr_stack.pop_back();
-					} else {
-						o_paran_found = true;
-						opr_stack.pop_back();
-						// discard nxt_tkn
-						break;
 					}
+					break;
 				}
-				if (!o_paran_found) {
-					m_error = "Mismatch paranthesis.";
-					result.resize(0);
-					return;
-				} else if (opr_stack.back().type() == Type::Function) {
-					result.push_back(opr_stack.back());
-					opr_stack.pop_back();
+			case Type::Comma: {
+					/* In this case, pop every operator on the operator stack
+					 * and push it on the result stack, until an o paran is
+					 * found (there is definitly an open paran) - don't touch
+					 * open paran - and discard comma.
+					 */
+					while (opr_stack.back().type() != Type::OpenParan) {
+						result.push_back(opr_stack.back());
+						opr_stack.pop_back();
+					}
+					break;
 				}
-				break;
 		}
 		tokens.pop_front();
 	}
@@ -153,7 +166,7 @@ bool MathParser::evaluate(const QString& expr)
 		return false;
 	}
 
-	QVector<double> eval_stack;
+	QVector<float> eval_stack;
 	while (result.size() > 0) {
 		auto nxt_tkn = result.front();
 		switch (nxt_tkn.type()) {
@@ -209,8 +222,9 @@ bool MathParser::evaluate(const QString& expr)
 	}
 
 	if (eval_stack.size() == 1) {
-		m_value = eval_stack.front();
+		m_value = QString::number(eval_stack.front());
 	} else {
+		m_value = "0";
 		m_error = "Malformed expression, empty eval_stack";
 		return false;
 	}

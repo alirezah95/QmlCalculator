@@ -27,21 +27,15 @@ GridLayout {
 	CalcButton {
 		id: idBtnPercent; buttonType: CalcButton.Type.Operator
 		text: perSing
-		contentItem: Text { text: parent.text
-			color: Material.accent;
-			font.pointSize: operFontSize - operFontSize * 0.2;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
+		contentText.font.pointSize: operFontSize - operFontSize * 0.2
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtnDiv; buttonType: CalcButton.Type.Operator
 		text: divSign
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
@@ -49,40 +43,25 @@ GridLayout {
 	CalcButton {
 		id: idBtn1
 		text: "1"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtn2
 		text: "2"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtn3
 		text: "3"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtnMul; buttonType: CalcButton.Type.Operator
 		text: mulSign
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
@@ -90,40 +69,26 @@ GridLayout {
 	CalcButton {
 		id: idBtn4
 		text: "4"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtn5
 		text: "5"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtn6
 		text: "6"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtnSub; buttonType: CalcButton.Type.Operator
 		text: subSign
-		contentItem: Text { text: "\u2212"
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
+		contentText.text: "\u2212"
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
@@ -131,40 +96,25 @@ GridLayout {
 	CalcButton {
 		id: idBtn7
 		text: "7"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtn8
 		text: "8"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtn9
 		text: "9"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtnPlus; buttonType: CalcButton.Type.Operator
 		text: sumSign
-		contentItem: Text { text: parent.text
-			color: Material.accent; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.color: Material.accent
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
@@ -173,32 +123,19 @@ GridLayout {
 		id: idModeTglBtn; buttonType: CalcButton.Type.Control
 		text: ">"
 		isHighlighted: true
-		contentItem: Text { text: parent.text
-			color: Material.background;
-			font.pointSize: operFontSize - operFontSize * 0.2;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
+		contentText.font.pointSize: operFontSize - operFontSize * 0.2
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtn0
 		text: "0"
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
 	CalcButton {
 		id: idBtnPeriod; buttonType: CalcButton.Type.Number
 		text: "."
-		contentItem: Text { text: parent.text
-			color: Material.foreground; font.pointSize: numFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
-		display: AbstractButton.IconOnly
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}
@@ -206,10 +143,6 @@ GridLayout {
 		id: idBtnEqual; buttonType: CalcButton.Type.Operator
 		text: equSign
 		isHighlighted: true
-		contentItem: Text { text: parent.text
-			color: Material.background; font.pointSize: operFontSize;
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter}
 		Layout.preferredWidth: itemsWidth; Layout.preferredHeight: itemsHeight
 		Layout.alignment: Qt.AlignHCenter
 	}

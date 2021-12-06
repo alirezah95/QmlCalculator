@@ -13,5 +13,8 @@
         <file>assets/clear.png</file>
         <file>assets/percentage.png</file>
         <file>AdvancePad.qml</file>
+        <file>assets/Cantarell-Regular.otf</file>
+        <file>assets/Hello Giorgina.ttf</file>
+        <file>assets/DejaVuSans.ttf</file>
     </qresource>
 </RCC>

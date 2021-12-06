@@ -76,6 +76,10 @@ bool Validator::validate(const QVector<Token>& tokens)
 			std::cout << "Misplaced comma..." << std::endl;
 			return false;
 		}
+		if (comma_counts.back().first != paran_value - 1) {
+			std::cout << "Misplaced comma... 2" << std::endl;
+			return false;
+		}
 		comma_counts.back().second--;
 		if (comma_counts.back().second < 0) {
 			std::cout << "Too many function arguments..." << std::endl;

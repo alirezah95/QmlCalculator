@@ -15,15 +15,16 @@ ApplicationWindow {
 	readonly property string subSign:	"-"
 	readonly property string divSign:	"\u00f7"
 	readonly property string mulSign:	"\u00d7"
-	readonly property string powSign:	"x\u02b8"
+	readonly property string powSign:	"\u03f0\u02b8"
 	readonly property string equSign:	"\u003d"
 	readonly property string perSing:	"\u0025"
 	readonly property string piSign:	"\u03c0"
 	readonly property string invSign:	"\u00b9\u2044\u2093"
-	readonly property string squSign:	"\u221A"
+	readonly property string squSign:	"\u221a"
 	readonly property string cubSign:	"\u221b"
 	readonly property string eNumSign:	"\u212f"
-	readonly property string facSign:	"x!"
+	readonly property string facSign:	"\u03f0!"
+	readonly property string infSign:	"\u221e"
 
 	property real	itemsWidth:		Math.min(width / 8.0, height / 12.0)
 	property real	itemsHeight:	itemsWidth
@@ -32,19 +33,34 @@ ApplicationWindow {
 	property int	accentColorNum:	Material.DeepOrange
 	property int	operFontSize:	25
 	property int	numFontSize:	20
+	property bool	resultState:	false
 
 	function onButtonPressed(buttonType, txt) {
+		if (resultState) {
+			idCalcText.text = "";
+			resultState = false;
+		}
+
 		switch (buttonType) {
 		case CalcButton.Type.Number:
+		case CalcButton.Type.Function:
 			idCalcText.text += txt;
 			break;
 		case CalcButton.Type.Operator:
 			if (txt === equSign){
+				resultState = true;
+				idCalcPrevText.text = idCalcText.text
 				// Calulate the result of expression
 				if (MathParser.evaluate(idCalcText.text)) {
-					print(MathParser.value());
+					let val = MathParser.value();
+					if (val === "-inf") {
+						val = subSign + infSign;
+					} else if (val === "inf") {
+						val = sumSign + infSign;
+					}
+					idCalcText.text = val;
 				} else {
-					print(MathParser.error());
+					idCalcText.text = "Error";
 				}
 			} else {
 				idCalcText.text += txt;
@@ -67,6 +83,11 @@ ApplicationWindow {
 		}
 	}
 
+	FontLoader {
+		id: idMainFont
+		source: "qrc:/assets/DejaVuSans.ttf"
+	}
+
 	Material.accent: Material.color(accentColorNum)
 
 	Component.onCompleted: idStateItem.state = "Advanced";
@@ -87,7 +108,7 @@ ApplicationWindow {
 					anchors.rightMargin: idRoot.width
 				}
 				PropertyChanges {
-					target: idCalcText
+					target: idLabelsCol
 					anchors.bottom: idItemsCol.top
 				}
 			},
@@ -101,7 +122,7 @@ ApplicationWindow {
 					anchors.rightMargin: 0
 				}
 				PropertyChanges {
-					target: idCalcText; anchors.bottom: idAdvPad.top
+					target: idLabelsCol; anchors.bottom: idAdvPad.top
 				}
 			}
 
@@ -128,36 +149,55 @@ ApplicationWindow {
 		]
 	}
 
-	Label {
-		id: idCalcText
-		height: itemsHeight
+	ColumnLayout {
+		id: idLabelsCol
 		anchors {
 			bottom: idItemsCol.top
 			bottomMargin: 10
 			left: parent.left
 			right: parent.right
 			leftMargin: itemsWidth / 3.0
-			rightMargin: itemsWidth / 2.0
+			rightMargin: itemsWidth / 3.0
+		}
+		Label {
+			id: idCalcPrevText
+			Layout.preferredHeight: itemsHeight
+			Layout.fillWidth: true
+
+			horizontalAlignment: Qt.AlignLeft
+			verticalAlignment: Qt.AlignVCenter
+			textFormat: Text.PlainText
+			opacity: 0.7
+//			color: "silver"
+			font {
+				pointSize: numFontSize - numFontSize * 0.25
+			}
 		}
 
-		horizontalAlignment: Qt.AlignLeft
-		verticalAlignment: Qt.AlignVCenter
-		textFormat: Text.PlainText
-		font {
-			pointSize: 30
-		}
-		background: Rectangle {
-			color: "gray"
-			opacity: 0.2
-		}
+		Label {
+			id: idCalcText
+			Layout.preferredHeight: itemsHeight
+			Layout.fillWidth: true
 
-		Rectangle {
-			id: idCTextBtmLine
-			width: parent.width
-			height: 2
-			anchors.bottom: parent.bottom
-			anchors.horizontalCenter: parent.horizontalCenter
-			color: Material.accent
+			horizontalAlignment: Qt.AlignLeft
+			verticalAlignment: Qt.AlignVCenter
+			textFormat: Text.PlainText
+			font {
+				pointSize: numFontSize
+			}
+			background: Rectangle {
+				color: "gray"
+				opacity: 0.2
+			}
+
+			Rectangle {
+				id: idCTextBtmLine
+				width: parent.width
+				height: 2
+				anchors.bottom: parent.bottom
+				anchors.horizontalCenter: parent.horizontalCenter
+				color: Material.accent
+			}
 		}
 	}
 
