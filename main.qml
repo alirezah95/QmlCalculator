@@ -151,6 +151,7 @@ ApplicationWindow {
 
 	ColumnLayout {
 		id: idLabelsCol
+		spacing: 20
 		anchors {
 			bottom: idItemsCol.top
 			bottomMargin: 10
@@ -159,6 +160,7 @@ ApplicationWindow {
 			leftMargin: itemsWidth / 3.0
 			rightMargin: itemsWidth / 3.0
 		}
+
 		Label {
 			id: idCalcPrevText
 			Layout.preferredHeight: itemsHeight
@@ -168,9 +170,16 @@ ApplicationWindow {
 			verticalAlignment: Qt.AlignVCenter
 			textFormat: Text.PlainText
 			opacity: 0.7
-//			color: "silver"
 			font {
 				pointSize: numFontSize - numFontSize * 0.25
+			}
+			MouseArea {
+				anchors.fill: parent
+				onReleased: {
+					idCalcText.text = (idCalcPrevText.text)
+							? idCalcPrevText.text: "";
+					resultState = false;
+				}
 			}
 		}
 
@@ -184,10 +193,6 @@ ApplicationWindow {
 			textFormat: Text.PlainText
 			font {
 				pointSize: numFontSize
-			}
-			background: Rectangle {
-				color: "gray"
-				opacity: 0.2
 			}
 
 			Rectangle {

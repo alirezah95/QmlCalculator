@@ -196,6 +196,14 @@ bool Validator::validate(const QVector<Token>& tokens)
 						// It's ok.
 						o_paran_fnd();
 						break;
+					case Type::Operator:
+						if (tkn.is_unary() && tkn.is_r_associative()) {
+							// It's ok.
+							m_state = tkn.type();
+						} else {
+							return false;
+						}
+						break;
 					default:
 						return false;
 				}

@@ -8,10 +8,10 @@
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 
-    QGuiApplication app(argc, argv);
+	QGuiApplication app(argc, argv);
 
 	QScopedPointer mp(new MathParser);
 	qmlRegisterSingletonInstance<MathParser>("mathparser", 1, 0, "MathParser",
