@@ -30,6 +30,8 @@ ApplicationWindow {
 	property real	itemsHeight:	itemsWidth
 	property color	itemsColor:		"azure"
 	property color	fgColor:		Material.foreground
+//	property int	bgColorNum:		(Material.theme === Material.Dark
+//									 ? Material.Dark
 	property int	accentColorNum:	Material.DeepOrange
 	property int	operFontSize:	25
 	property int	numFontSize:	20
@@ -48,6 +50,10 @@ ApplicationWindow {
 			break;
 		case CalcButton.Type.Operator:
 			if (txt === equSign){
+				if (idCalcText.text.length == 0) {
+					return;
+				}
+
 				resultState = true;
 				idCalcPrevText.text = idCalcText.text
 				// Calulate the result of expression
@@ -89,9 +95,15 @@ ApplicationWindow {
 	}
 
 	Material.accent: Material.color(accentColorNum)
+	Material.background: Material.color(Material.Grey,
+										Material.theme === Material.Dark
+										? Material.Shade900:
+										  Material.Shade50);
 
-	Component.onCompleted: idStateItem.state = "Simple";
-
+	Component.onCompleted: {
+		idStateItem.state = "Simple";
+		print(Material.background);
+	}
 	Item {
 		id: idStateItem
 
@@ -189,6 +201,7 @@ ApplicationWindow {
 			Layout.fillWidth: true
 			readOnly: true
 			selectByMouse: true
+			focus: true
 
 			horizontalAlignment: Qt.AlignLeft
 			verticalAlignment: Qt.AlignVCenter
@@ -205,6 +218,55 @@ ApplicationWindow {
 				anchors.bottom: parent.bottom
 				anchors.horizontalCenter: parent.horizontalCenter
 				color: Material.accent
+			}
+			Keys.onPressed: function (event) {
+				if (event.key === Qt.Key_Return) {
+					onButtonPressed(
+								CalcButton.Type.Operator, equSign);
+					return;
+				} else if (event.key === Qt.Key_Backspace) {
+					onButtonPressed(CalcButton.Type.Control, "d");
+					return;
+				}
+
+				if (resultState) {
+					idCalcText.text = "";
+					resultState = false;
+				}
+
+				var s = event.text;
+				if (/[a-z]/.test(s) ||
+						/[0-9]/.test(s) ||
+						/[(|)]/.test(s) ) {
+					idCalcText.text += s;
+				} else if (/[-|+|*|/|^|!]/.test(s)) {
+					switch (s) {
+					case "-": {
+						idCalcText.text += subSign;
+						break;
+					}
+					case "+": {
+						idCalcText.text += sumSign;
+						break;
+					}
+					case "*": {
+						idCalcText.text += mulSign;
+						break;
+					}
+					case "/": {
+						idCalcText.text += divSign;
+						break;
+					}
+					case "^": {
+						idCalcText.text += powSign;
+						break;
+					}
+					case "!": {
+						idCalcText.text += facSign;
+						break;
+					}
+					}
+				}
 			}
 		}
 	}
