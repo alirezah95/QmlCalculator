@@ -13,8 +13,8 @@ MathParser::MathParser(QObject *parent) : QObject(parent)
 }
 
 
-float MathParser::get_value(QString operation, float operand_0,
-							 float operand_1)
+double MathParser::get_value(QString operation, double operand_0,
+							 double operand_1)
 {
 	if (operation == QString(SUM_SIGN)) {
 		return operand_0 + operand_1;
@@ -166,7 +166,7 @@ bool MathParser::evaluate(const QString& expr)
 		return false;
 	}
 
-	QVector<float> eval_stack;
+	QVector<double> eval_stack;
 	while (result.size() > 0) {
 		auto nxt_tkn = result.front();
 		switch (nxt_tkn.type()) {
@@ -222,7 +222,9 @@ bool MathParser::evaluate(const QString& expr)
 	}
 
 	if (eval_stack.size() == 1) {
-		m_value = QString::number(eval_stack.front());
+		auto precision = 10000000000.0;
+		auto val = round(eval_stack.front() * precision) / precision;
+		m_value = QString::number(val);
 	} else {
 		m_value = "0";
 		m_error = "Malformed expression, empty eval_stack";

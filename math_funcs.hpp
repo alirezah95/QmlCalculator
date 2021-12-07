@@ -4,7 +4,7 @@
 #include <QtCore>
 
 
-using Func = std::function<float(std::initializer_list<float>)>;
+using Func = std::function<double(std::initializer_list<double>)>;
 using FuncPair = QPair<Func, int>;
 
 
@@ -12,29 +12,29 @@ using FuncPair = QPair<Func, int>;
 // to handle radian an degrees input.
 namespace MathFunc {
 // For now it is assumed that only degree values are meant
-static float sin(std::initializer_list<float> l)
+static double sin(std::initializer_list<double> l)
 {
-	return ::sin(*l.begin() * M_PI / 180.0L);
+	return ::sin(*l.begin() / 180.0 * M_PI);
 }
 
-static float cos(std::initializer_list<float> l)
+static double cos(std::initializer_list<double> l)
 {
-	return ::cos(*l.begin() * M_PI / 180.0);
+	return ::cos(*l.begin() / 180.0 * M_PI);
 }
 
-static float tan(std::initializer_list<float> l)
+static double tan(std::initializer_list<double> l)
 {
-	return ::tan(*l.begin() * M_PI / 180.0);
+	return ::tan(*l.begin() / 180.0 * M_PI);
 }
 
-static float log(std::initializer_list<float> l)
+static double log(std::initializer_list<double> l)
 {
-	return ::log10f(*l.begin());
+	return ::log10(*l.begin());
 }
 
-static float max(std::initializer_list<float> l)
+static double max(std::initializer_list<double> l)
 {
-	return fmax(*l.begin(), *(l.begin() + 1));
+	return qMax(*l.begin(), *(l.begin() + 1));
 }
 
 }

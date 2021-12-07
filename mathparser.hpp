@@ -20,7 +20,7 @@ public:
 private:
 	void get_postfix_notation(const QString& expr, QVector<Token>& tokens,
 							  QVector<Token>& result);
-	float get_value(QString operation, float operand_0, float operand_1);
+	double get_value(QString operation, double operand_0, double operand_1);
 
 private:
 	QString					m_error;
