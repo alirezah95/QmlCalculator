@@ -37,6 +37,12 @@ ApplicationWindow {
 	property int	numFontSize:	20
 	property bool	resultState:	false
 
+	function onPrevTextReleased() {
+		idCalcText.text = (idCalcPrevText.text) ? idCalcPrevText.text: "";
+		resultState = false;
+		return;
+	}
+
 	function onButtonPressed(buttonType, txt) {
 		if (resultState) {
 			idCalcText.text = "";
@@ -186,12 +192,9 @@ ApplicationWindow {
 				pointSize: numFontSize - numFontSize * 0.25
 			}
 			MouseArea {
+				id: idPrevArea
 				anchors.fill: parent
-				onReleased: {
-					idCalcText.text = (idCalcPrevText.text)
-							? idCalcPrevText.text: "";
-					resultState = false;
-				}
+				onReleased: onPrevTextReleased();
 			}
 		}
 
@@ -221,17 +224,15 @@ ApplicationWindow {
 			}
 			Keys.onPressed: function (event) {
 				if (event.key === Qt.Key_Return) {
-					onButtonPressed(
-								CalcButton.Type.Operator, equSign);
+					if (resultState) {
+						onPrevTextReleased();
+					} else {
+						onButtonPressed(CalcButton.Type.Operator, equSign);
+					}
 					return;
 				} else if (event.key === Qt.Key_Backspace) {
 					onButtonPressed(CalcButton.Type.Control, "d");
 					return;
-				}
-
-				if (resultState) {
-					idCalcText.text = "";
-					resultState = false;
 				}
 
 				var s = event.text;
@@ -239,30 +240,38 @@ ApplicationWindow {
 						/[0-9]/.test(s) ||
 						/[(|)]/.test(s) ) {
 					idCalcText.text += s;
+					if (resultState) {
+						idCalcText.text = "";
+						resultState = false;
+					}
 				} else if (/[-|+|*|/|^|!]/.test(s)) {
+					if (resultState) {
+						idCalcText.text = "";
+						resultState = false;
+					}
 					switch (s) {
 					case "-": {
-						idCalcText.text += subSign;
+						onButtonPressed(CalcButton.Type.Operator, subSign);
 						break;
 					}
 					case "+": {
-						idCalcText.text += sumSign;
+						onButtonPressed(CalcButton.Type.Operator, sumSign);
 						break;
 					}
 					case "*": {
-						idCalcText.text += mulSign;
+						onButtonPressed(CalcButton.Type.Operator, mulSign);
 						break;
 					}
 					case "/": {
-						idCalcText.text += divSign;
+						onButtonPressed(CalcButton.Type.Operator, divSign);
 						break;
 					}
 					case "^": {
-						idCalcText.text += powSign;
+						onButtonPressed(CalcButton.Type.Operator, "^");
 						break;
 					}
 					case "!": {
-						idCalcText.text += facSign;
+						onButtonPressed(CalcButton.Type.Operator, "!");
 						break;
 					}
 					}

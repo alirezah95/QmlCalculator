@@ -250,7 +250,7 @@ bool Validator::validate(const QVector<Token>& tokens)
 		std::cout << "Mismatch paranthesis: 142" << std::endl;
 		return false;
 	}
-	std::cout << "size: " << tokens.size() << std::endl;
+
 	if (tokens.isEmpty()) {
 		std::cout << "Error" << std::endl;
 		return false;

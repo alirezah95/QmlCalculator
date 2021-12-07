@@ -156,9 +156,8 @@ bool MathParser::evaluate(const QString& expr)
 	}
 
 	get_postfix_notation(expr, tokens, result);
-	for (auto& tk: result)
-		std::cout << tk.string().toStdString() << std::endl;
-
+//	for (auto& tk: result)
+//		std::cout << tk.string().toStdString() << std::endl;
 
 	if (result.size() == 0) {
 		std::cout << m_error.toStdString() << std::endl;
@@ -222,8 +221,8 @@ bool MathParser::evaluate(const QString& expr)
 	}
 
 	if (eval_stack.size() == 1) {
-		auto precision = 10000000000.0;
-		auto val = round(eval_stack.front() * precision) / precision;
+		long double precision = 1000000000.0;
+		double val = roundl(eval_stack.front() * precision) / precision;
 		m_value = QString::number(val);
 	} else {
 		m_value = "0";
